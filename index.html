@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sureka Ramasamy — Senior SRE / DevOps Lead</title>
-<meta name="description" content="AWS & Kubernetes Certified Senior SRE / DevOps Lead with 8+ years operating large-scale cloud infrastructure across Web3 and enterprise environments. Based in Dubai.">
-<meta property="og:title" content="Sureka Ramasamy — Senior SRE / DevOps Lead">
+<title>Sureka Ramasamy — Senior Site Reliability Engineer</title>
+<meta name="description" content="AWS & Kubernetes Certified Senior Site Reliability Engineer with 8+ years operating large-scale cloud infrastructure across Web3 and enterprise environments. Based in Dubai.">
+<meta property="og:title" content="Sureka Ramasamy — Senior Site Reliability Engineer">
 <meta property="og:description" content="EKS · CI/CD · Disaster Recovery · Dubai">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://surekramsy.github.io/">
@@ -15,10 +15,10 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #ffffff;
-    --bg-alt: #f7f8fa;
-    --bg-panel: #f3f5f7;
-    --border: #e2e6ea;
+    --bg: #f6f7f9;
+    --bg-alt: #eef1f4;
+    --bg-panel: #ffffff;
+    --border: #e1e5ea;
     --text: #1a2530;
     --text-dim: #5b6b7a;
     --accent: #1e5f8c;
@@ -41,122 +41,64 @@
 
   a{ color:inherit; text-decoration:none; }
 
-  .container{
-    max-width:1080px;
+  /* ===== LAYOUT ===== */
+  .layout{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    max-width:1280px;
     margin:0 auto;
-    padding:0 24px;
+    min-height:100vh;
   }
 
-  /* ===== NAV ===== */
-  header.nav{
+  /* ===== SIDEBAR ===== */
+  .sidebar{
+    background:var(--bg-panel);
+    border-right:1px solid var(--border);
+    padding:48px 36px;
     position:sticky;
     top:0;
-    z-index:50;
-    background:rgba(11,15,20,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-  }
-  .nav-inner{
+    height:100vh;
+    overflow-y:auto;
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 24px;
-    max-width:1080px;
-    margin:0 auto;
+    flex-direction:column;
   }
-  .nav-logo{
-    font-family:var(--mono);
-    font-weight:700;
-    font-size:0.95rem;
-    letter-spacing:0.02em;
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .nav-logo .dot{ display:none; }
-  .nav-links{
-    display:flex;
-    gap:28px;
-    font-family:var(--mono);
-    font-size:0.82rem;
-    color:var(--text-dim);
-  }
-  .nav-links a{ transition:color 0.2s; }
-  .nav-links a:hover{ color:var(--accent); }
-
-  /* ===== HERO ===== */
-  .hero{
-    padding:90px 0 70px;
-    border-bottom:1px solid var(--border);
-    position:relative;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:'';
-    position:absolute;
-    top:-200px; right:-200px;
-    width:500px; height:500px;
-    background:radial-gradient(circle, rgba(30,95,140,0.06), transparent 70%);
-    pointer-events:none;
-  }
-  .hero-eyebrow{
-    font-family:var(--mono);
-    font-size:0.8rem;
-    color:var(--accent);
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    margin-bottom:18px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .hero-eyebrow::before{
-    content:'';
-    display:inline-block;
-    width:24px; height:1px;
-    background:var(--accent);
-  }
-  h1{
-    font-family:var(--sans);
+  .sidebar-name{
+    font-size:1.7rem;
     font-weight:800;
-    font-size:clamp(2.2rem, 5vw, 3.6rem);
-    line-height:1.1;
     letter-spacing:-0.01em;
-    margin-bottom:14px;
+    margin-bottom:6px;
   }
-  .hero-role{
-    font-family:var(--sans);
-    font-size:clamp(1rem, 2vw, 1.25rem);
+  .sidebar-role{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .sidebar-location{
+    font-size:0.85rem;
     color:var(--text-dim);
-    margin-bottom:26px;
-    font-weight:500;
+    margin-bottom:28px;
   }
-  .hero-role .sep{ color:var(--accent); margin:0 6px; }
-  .hero-desc{
-    max-width:680px;
-    color:var(--text-dim);
-    font-size:1.02rem;
-    margin-bottom:36px;
-  }
-  .hero-desc strong{ color:var(--text); font-weight:600; }
-  .hero-cta{
+  .sidebar-cta{
     display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-bottom:56px;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:36px;
   }
   .btn{
     font-family:var(--mono);
-    font-size:0.85rem;
+    font-size:0.82rem;
     font-weight:600;
-    padding:12px 22px;
+    padding:11px 18px;
     border-radius:6px;
     border:1px solid var(--border);
     transition:all 0.2s;
-    display:inline-flex;
+    display:flex;
     align-items:center;
+    justify-content:center;
     gap:8px;
+    text-align:center;
   }
   .btn-primary{
     background:var(--accent);
@@ -165,181 +107,166 @@
   }
   .btn-primary:hover{
     background:var(--accent-dim);
-    box-shadow:0 0 0 4px rgba(30,95,140,0.12);
   }
   .btn-secondary{
     color:var(--text);
-    background:var(--bg-panel);
+    background:var(--bg-alt);
   }
   .btn-secondary:hover{
     border-color:var(--accent);
     color:var(--accent);
   }
 
-  /* Status panel */
-  .status-panel{
-    background:var(--bg-panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    overflow:hidden;
+  .sidebar-section{
+    margin-bottom:32px;
   }
-  .status-bar{
-    padding:12px 18px;
-    border-bottom:1px solid var(--border);
-    background:var(--bg-alt);
+  .sidebar-section h3{
     font-family:var(--mono);
-    font-size:0.78rem;
+    font-size:0.72rem;
     color:var(--text-dim);
-    font-weight:600;
-    letter-spacing:0.05em;
-    text-transform:uppercase;
-  }
-  .status-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:1px;
-    background:var(--border);
-  }
-  .status-cell{
-    background:var(--bg-panel);
-    padding:24px 18px;
-    text-align:left;
-  }
-  .status-cell .metric{
-    font-family:var(--mono);
-    font-size:clamp(1.4rem, 3vw, 2rem);
-    font-weight:700;
-    color:var(--accent);
-    line-height:1.1;
-  }
-  .status-cell .metric.amber{ color:var(--amber); }
-  .status-cell .label{
-    font-size:0.78rem;
-    color:var(--text-dim);
-    margin-top:6px;
-    font-family:var(--mono);
-  }
-
-  @media (max-width:680px){
-    .status-grid{ grid-template-columns:repeat(2, 1fr); }
-  }
-
-  /* ===== SECTIONS ===== */
-  section{ padding:80px 0; border-bottom:1px solid var(--border); }
-  section:last-of-type{ border-bottom:none; }
-
-  .section-tag{
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--accent);
     text-transform:uppercase;
     letter-spacing:0.14em;
-    margin-bottom:12px;
-  }
-  h2{
-    font-family:var(--mono);
-    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    margin-bottom:14px;
     font-weight:700;
-    margin-bottom:18px;
-    max-width:760px;
-    line-height:1.3;
   }
 
-  /* About */
-  .about-grid{
-    display:grid;
-    grid-template-columns:1.4fr 1fr;
-    gap:48px;
-    align-items:start;
+  .metric-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
   }
-  .about-text p{ color:var(--text-dim); margin-bottom:16px; }
-  .about-text strong{ color:var(--text); }
-  .about-text code{
-    font-family:var(--mono);
-    background:var(--bg-panel);
-    border:1px solid var(--border);
-    padding:2px 6px;
-    border-radius:4px;
-    font-size:0.88em;
-    color:var(--accent);
-  }
-  .focus-list{
-    background:var(--bg-panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:24px;
-  }
-  .focus-list h3{
-    font-family:var(--mono);
-    font-size:0.85rem;
-    color:var(--text-dim);
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    margin-bottom:16px;
-    font-weight:600;
-  }
-  .focus-list ul{ list-style:none; }
-  .focus-list li{
-    font-family:var(--mono);
-    font-size:0.88rem;
-    padding:10px 0;
-    border-bottom:1px solid var(--border);
+  .metric-item{
     display:flex;
     justify-content:space-between;
-    gap:12px;
-    color:var(--text);
+    align-items:baseline;
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
   }
-  .focus-list li:last-child{ border-bottom:none; }
-  .focus-list li span:last-child{ color:var(--amber); font-weight:600; }
-
-  @media (max-width:780px){
-    .about-grid{ grid-template-columns:1fr; }
-  }
-
-  /* Skills */
-  .skill-groups{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:1px;
-    background:var(--border);
-    border:1px solid var(--border);
-    border-radius:10px;
-    overflow:hidden;
-  }
-  .skill-group{
-    background:var(--bg-panel);
-    padding:24px 26px;
-  }
-  .skill-group h3{
+  .metric-item .num{
     font-family:var(--mono);
-    font-size:0.82rem;
+    font-weight:800;
+    font-size:1.3rem;
     color:var(--accent);
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    margin-bottom:14px;
   }
-  .skill-tags{
+  .metric-item .lbl{
+    font-size:0.8rem;
+    color:var(--text-dim);
+    text-align:right;
+    max-width:140px;
+  }
+
+  .focus-tags{
     display:flex;
     flex-wrap:wrap;
     gap:8px;
   }
-  .skill-tags span{
+  .focus-tags span{
     font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--text-dim);
+    font-size:0.75rem;
+    color:var(--text);
     background:var(--bg-alt);
     border:1px solid var(--border);
     padding:5px 10px;
     border-radius:5px;
-    transition:all 0.2s;
   }
-  .skill-tags span:hover{
+
+  .cred-item{
+    margin-bottom:14px;
+  }
+  .cred-item:last-child{ margin-bottom:0; }
+  .cred-item .ctype{
+    font-family:var(--mono);
+    font-size:0.68rem;
     color:var(--accent);
-    border-color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:3px;
+  }
+  .cred-item .cname{
+    font-size:0.85rem;
+    font-weight:600;
+    line-height:1.4;
+  }
+  .cred-item .cmeta{
+    font-size:0.78rem;
+    color:var(--text-dim);
+  }
+
+  .sidebar-footer{
+    margin-top:auto;
+    padding-top:24px;
+    font-size:0.75rem;
+    color:var(--text-dim);
+    font-family:var(--mono);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main{
+    padding:48px 56px;
+  }
+
+  .lead-text{
+    font-size:1.1rem;
+    color:var(--text-dim);
+    max-width:720px;
+    margin-bottom:48px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--border);
+  }
+  .lead-text strong{ color:var(--text); font-weight:600; }
+
+  .main section{
+    margin-bottom:56px;
+  }
+  .main section:last-child{ margin-bottom:0; }
+
+  .section-tag{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  h2{
+    font-size:1.5rem;
+    font-weight:800;
+    margin-bottom:28px;
+    letter-spacing:-0.01em;
+  }
+
+  /* Skills */
+  .skills-table{
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--bg-panel);
+  }
+  .skills-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:24px;
+    padding:16px 24px;
+    border-bottom:1px solid var(--border);
+    align-items:baseline;
+  }
+  .skills-row:last-child{ border-bottom:none; }
+  .skills-row:nth-child(even){ background:var(--bg-alt); }
+  .skills-cat{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .skills-items{
+    color:var(--text-dim);
+    font-size:0.9rem;
+    line-height:1.7;
   }
 
   @media (max-width:680px){
-    .skill-groups{ grid-template-columns:1fr; }
+    .skills-row{ grid-template-columns:1fr; gap:6px; }
   }
 
   /* Experience */
@@ -349,65 +276,65 @@
     gap:0;
   }
   .job{
-    display:grid;
-    grid-template-columns:200px 1fr;
-    gap:32px;
-    padding:32px 0;
+    padding:28px 0;
     border-bottom:1px solid var(--border);
   }
-  .job:last-child{ border-bottom:none; }
-  .job-meta{
-    font-family:var(--mono);
-    font-size:0.82rem;
-    color:var(--text-dim);
-  }
-  .job-meta .dates{
-    color:var(--accent);
-    font-weight:600;
-    margin-bottom:6px;
+  .job:first-child{ padding-top:0; }
+  .job:last-child{ border-bottom:none; padding-bottom:0; }
+  .job-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:4px;
   }
   .job-title{
-    font-family:var(--sans);
     font-size:1.05rem;
     font-weight:700;
     color:var(--text);
-    margin-bottom:4px;
+  }
+  .job-dates{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--accent);
+    font-weight:600;
+    white-space:nowrap;
   }
   .job-company{
     color:var(--text-dim);
-    font-size:0.92rem;
+    font-size:0.9rem;
     margin-bottom:14px;
   }
-  .job-company strong{ color:var(--amber); }
+  .job-company strong{ color:var(--text); font-weight:600; }
   .job ul{
     list-style:none;
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:9px;
   }
   .job ul li{
     color:var(--text-dim);
-    font-size:0.94rem;
-    padding-left:20px;
+    font-size:0.93rem;
+    padding-left:18px;
     position:relative;
   }
   .job ul li::before{
-    content:'▸';
+    content:'';
     position:absolute;
     left:0;
-    color:var(--accent);
-    font-family:var(--mono);
+    top:0.6em;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--accent);
   }
-  .job ul li strong{ color:var(--text); }
+  .job ul li strong{ color:var(--text); font-weight:600; }
 
-  @media (max-width:780px){
-    .job{ grid-template-columns:1fr; gap:8px; }
-  }
-
-  /* Certifications / Education */
+  /* Certifications */
   .cred-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     gap:1px;
     background:var(--border);
     border:1px solid var(--border);
@@ -416,20 +343,21 @@
   }
   .cred-card{
     background:var(--bg-panel);
-    padding:24px;
+    padding:20px 24px;
   }
   .cred-card .cred-type{
     font-family:var(--mono);
-    font-size:0.72rem;
+    font-size:0.7rem;
     color:var(--accent);
     text-transform:uppercase;
     letter-spacing:0.12em;
-    margin-bottom:10px;
+    margin-bottom:8px;
+    font-weight:700;
   }
   .cred-card h4{
-    font-family:var(--mono);
-    font-size:0.98rem;
-    margin-bottom:6px;
+    font-size:0.95rem;
+    font-weight:700;
+    margin-bottom:4px;
     line-height:1.4;
   }
   .cred-card p{
@@ -437,248 +365,153 @@
     font-size:0.82rem;
   }
 
-  @media (max-width:780px){
+  @media (max-width:680px){
     .cred-grid{ grid-template-columns:1fr; }
   }
 
-  /* Contact */
-  .contact-wrap{
-    background:var(--bg-panel);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:48px;
-    text-align:center;
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:900px){
+    .layout{ grid-template-columns:1fr; }
+    .sidebar{
+      position:relative;
+      height:auto;
+      border-right:none;
+      border-bottom:1px solid var(--border);
+    }
+    .main{ padding:36px 24px; }
   }
-  .contact-wrap h2{ margin:0 auto 14px; }
-  .contact-wrap p{
-    color:var(--text-dim);
-    max-width:520px;
-    margin:0 auto 32px;
+  @media (max-width:480px){
+    .sidebar{ padding:32px 24px; }
   }
-  .contact-links{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:14px;
-  }
-  .contact-links a{
-    font-family:var(--mono);
-    font-size:0.85rem;
-    padding:12px 20px;
-    border:1px solid var(--border);
-    border-radius:6px;
-    color:var(--text);
-    background:var(--bg-alt);
-    transition:all 0.2s;
-  }
-  .contact-links a:hover{
-    border-color:var(--accent);
-    color:var(--accent);
-  }
-
-  footer{
-    text-align:center;
-    padding:36px 0;
-    font-family:var(--mono);
-    font-size:0.78rem;
-    color:var(--text-dim);
-  }
-  footer .accent{ color:var(--accent); }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="nav-inner">
-    <div class="nav-logo"><span class="dot"></span>Sureka Ramasamy</div>
-    <nav class="nav-links">
-      <a href="#about">about</a>
-      <a href="#skills">skills</a>
-      <a href="#experience">experience</a>
-      <a href="#certifications">certs</a>
-      <a href="#contact">contact</a>
-    </nav>
-  </div>
-</header>
+<div class="layout">
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-eyebrow">Site Reliability &amp; Cloud Infrastructure</div>
-    <h1>Sureka Ramasamy</h1>
-    <div class="hero-role">Senior SRE / DevOps Lead <span class="sep">·</span> AWS &amp; Kubernetes Certified</div>
-    <p class="hero-desc">
-      8+ years operating large-scale cloud infrastructure across <strong>Web3 and enterprise environments</strong>.
-      Delivered ~40% cost reduction, ~57% faster CI/CD pipelines, and sub-5-minute incident detection across
-      multi-region AWS production systems. Specialises in <strong>EKS, CI/CD automation, infrastructure as code, disaster
-      recovery, and security hardening</strong> — from system design through live incident response. Based in Dubai.
-    </p>
-    <div class="hero-cta">
-      <a href="resume.pdf" class="btn btn-primary">Download Resume</a>
-      <a href="https://www.linkedin.com/in/sureka-ramasamy-496199179/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+  <aside class="sidebar">
+    <div class="sidebar-name">Sureka Ramasamy</div>
+    <div class="sidebar-role">Senior Site Reliability Engineer</div>
+    <div class="sidebar-location">AWS &amp; Kubernetes Certified · Dubai, UAE</div>
+
+    <div class="sidebar-cta">
+      <a href="Sureka_Resume.pdf" class="btn btn-primary">Download Resume</a>
+      <a href="https://www.linkedin.com/in/sureka-ramasamy" target="_blank" class="btn btn-secondary">LinkedIn</a>
       <a href="mailto:surekramsy@gmail.com" class="btn btn-secondary">Email</a>
     </div>
 
-    <div class="status-panel">
-      <div class="status-bar">Key results</div>
-      <div class="status-grid">
-        <div class="status-cell">
-          <div class="metric">8+</div>
-          <div class="label">years experience</div>
+    <div class="sidebar-section">
+      <h3>Key Results</h3>
+      <div class="metric-list">
+        <div class="metric-item">
+          <span class="num">8+</span>
+          <span class="lbl">years of infrastructure &amp; SRE experience</span>
         </div>
-        <div class="status-cell">
-          <div class="metric amber">99.9%</div>
-          <div class="label">production uptime</div>
+        <div class="metric-item">
+          <span class="num">99.9%</span>
+          <span class="lbl">production uptime across multi-region AWS</span>
         </div>
-        <div class="status-cell">
-          <div class="metric">~40%</div>
-          <div class="label">cloud cost reduction</div>
+        <div class="metric-item">
+          <span class="num">~40%</span>
+          <span class="lbl">reduction in annual cloud spend</span>
         </div>
-        <div class="status-cell">
-          <div class="metric">&lt;5min</div>
-          <div class="label">incident detection</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <div class="section-tag">About</div>
-    <h2>Running infrastructure that doesn't wake people up at 3am.</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          I design, build, and operate production-grade cloud platforms — from <code>EKS</code> clusters
-          to multi-region disaster recovery and
-          zero-downtime migrations. My current role spans live Web3 production systems including a
-          non-custodial wallet, blockchain explorer, and crypto payment gateway running across
-          multiple AWS regions.
-        </p>
-        <p>
-          I led a full <strong>EC2-to-EKS migration with zero downtime</strong>, rebuilt VPC, Aurora MySQL,
-          and IAM/OIDC from scratch, and directed a <strong>4-hour full-stack recovery</strong> from a
-          datacenter AZ failure across three engineering teams. I've engineered 25+ <code>GitHub Actions</code>
-          pipelines that replaced TeamCity entirely, cutting pipeline runtime in half and scaling
-          deployment frequency from weekly to 5+ times daily.
-        </p>
-        <p>
-          Security and cost are part of the job, not an afterthought: <strong>zero outstanding
-          vulnerabilities</strong> across four production domains via AWS WAF, IRSA, and KMS CMKs, and
-          a <strong>~40% reduction in annual cloud spend</strong> while growing a 3-person SRE team into a
-          fully autonomous operation.
-        </p>
-      </div>
-      <div class="focus-list">
-        <h3>Core Focus</h3>
-        <ul>
-          <li><span>Kubernetes / EKS</span><span>private clusters</span></li>
-          <li><span>IaC</span><span>Ansible · Automation</span></li>
-          <li><span>CI/CD</span><span>GitHub Actions · ArgoCD</span></li>
-          <li><span>Disaster Recovery</span><span>cross-region</span></li>
-          <li><span>Observability</span><span>Datadog · Prometheus</span></li>
-          <li><span>Security</span><span>WAF · KMS · IRSA</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="container">
-    <div class="section-tag">Skills</div>
-    <h2>Tools and platforms I operate daily.</h2>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <h3>Cloud / AWS</h3>
-        <div class="skill-tags">
-          <span>EC2</span><span>EKS</span><span>RDS / Aurora</span><span>ALB</span><span>CloudFront</span>
-          <span>WAF</span><span>Route53</span><span>IAM</span><span>SSM</span><span>KMS</span>
-          <span>CloudWatch</span><span>DLM</span><span>S3</span><span>SNS</span><span>VPC</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Kubernetes</h3>
-        <div class="skill-tags">
-          <span>EKS (private)</span><span>HPA</span><span>Cluster Autoscaler</span><span>StatefulSets</span>
-          <span>PVC/PV</span><span>Helm</span><span>RBAC</span><span>ALB Ingress</span>
-          <span>Auto Scaling</span><span>Microservices</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>IaC / Automation</h3>
-        <div class="skill-tags">
-          <span>Terraform</span><span>Ansible</span><span>Shell Scripting</span><span>Python</span>
-          <span>Cost Optimization</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>CI/CD</h3>
-        <div class="skill-tags">
-          <span>GitHub Actions</span><span>Jenkins</span><span>TeamCity</span><span>Docker</span>
-          <span>ECR</span><span>Argo CD</span><span>Dependabot</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>OS / Linux</h3>
-        <div class="skill-tags">
-          <span>RHEL 7/8/9</span><span>CentOS</span><span>Ubuntu</span><span>Debian</span><span>Rocky Linux</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Databases</h3>
-        <div class="skill-tags">
-          <span>Aurora MySQL</span><span>RDS MySQL</span><span>PostgreSQL</span><span>Redis (RDB+AOF)</span>
-          <span>MySQL binlog replication</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Security</h3>
-        <div class="skill-tags">
-          <span>WAF (managed rules)</span><span>Rate limiting</span><span>IP blocking</span><span>VAPT</span>
-          <span>KMS CMK</span><span>IRSA</span><span>CSP / security headers</span><span>IAM least-privilege</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Monitoring &amp; Observability</h3>
-        <div class="skill-tags">
-          <span>Datadog</span><span>Prometheus</span><span>Grafana</span><span>CloudWatch</span>
-          <span>ELK / Kibana</span><span>Splunk</span><span>Dozzle</span><span>AIOps</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Backup &amp; DR</h3>
-        <div class="skill-tags">
-          <span>Veeam</span><span>Cohesity</span><span>AWS DLM</span><span>AMI / EBS Snapshots</span>
-          <span>PVC Recovery</span><span>DR Runbooks</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>ITSM / Incident Mgmt</h3>
-        <div class="skill-tags">
-          <span>Jira</span><span>Confluence</span><span>ServiceNow</span><span>Remedy</span>
-          <span>RCA</span><span>On-Call</span><span>SLO / SLI</span>
+        <div class="metric-item">
+          <span class="num">&lt;5min</span>
+          <span class="lbl">mean incident detection time</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="experience">
-  <div class="container">
-    <div class="section-tag">Experience</div>
-    <h2>8+ years across Web3, enterprise infrastructure, and telecom-scale operations.</h2>
+    <div class="sidebar-section">
+      <h3>Core Focus</h3>
+      <div class="focus-tags">
+        <span>Kubernetes / EKS</span>
+        <span>CI/CD</span>
+        <span>Disaster Recovery</span>
+        <span>Cloud Security</span>
+        <span>Cost Optimization</span>
+        <span>Incident Response</span>
+      </div>
+    </div>
 
-    <div class="timeline">
+    <div class="sidebar-section">
+      <h3>Certifications</h3>
+      <div class="cred-item">
+        <div class="ctype">Certification</div>
+        <div class="cname">AWS Solutions Architect Associate</div>
+        <div class="cmeta">ID: 31679-91118-142989</div>
+      </div>
+      <div class="cred-item">
+        <div class="ctype">Certification</div>
+        <div class="cname">Certified Kubernetes Administrator (CKA)</div>
+        <div class="cmeta">Udemy</div>
+      </div>
+      <div class="cred-item">
+        <div class="ctype">Certification</div>
+        <div class="cname">Cloud Computing &amp; DevOps</div>
+        <div class="cmeta">ID: 31679-1523804-142989</div>
+      </div>
+    </div>
 
-      <div class="job">
-        <div class="job-meta">
-          <div class="dates">Jun 2025 — Present</div>
-          Dubai, UAE
-        </div>
-        <div>
-          <div class="job-title">Senior Site Reliability Engineer / Lead</div>
-          <div class="job-company"><strong>Token 13 Software L.L.C</strong></div>
+    <div class="sidebar-section">
+      <h3>Education</h3>
+      <div class="cred-item">
+        <div class="cname">B.Tech, Information Technology</div>
+        <div class="cmeta">Anna University, India — May 2017</div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      © 2026 Sureka Ramasamy<br>
+      surekramsy@gmail.com · +971 509028488
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <p class="lead-text">
+      8+ years operating large-scale cloud infrastructure across <strong>Web3 and enterprise environments</strong>.
+      Delivered ~40% cost reduction, ~57% faster CI/CD pipelines, and sub-5-minute incident detection across
+      multi-region AWS production systems. Specialises in <strong>EKS, CI/CD automation, infrastructure as code,
+      disaster recovery, and security hardening</strong> — from system design through live incident response.
+    </p>
+
+    <section id="about">
+      <div class="section-tag">About</div>
+      <h2>Cloud infrastructure, reliability, and operational excellence</h2>
+      <p style="color:var(--text-dim); margin-bottom:14px;">
+        I design, build, and operate production-grade cloud platforms — from Kubernetes (EKS) clusters
+        to multi-region disaster recovery and zero-downtime migrations. My current role spans live Web3
+        production systems including a non-custodial wallet, blockchain explorer, and crypto payment
+        gateway running across multiple AWS regions.
+      </p>
+      <p style="color:var(--text-dim); margin-bottom:14px;">
+        I led a full <strong style="color:var(--text)">EC2-to-EKS migration with zero downtime</strong>, rebuilt VPC, Aurora MySQL,
+        and IAM/OIDC from scratch, and directed a <strong style="color:var(--text)">4-hour full-stack recovery</strong> from a
+        datacenter AZ failure across three engineering teams. I've engineered 25+ GitHub Actions
+        pipelines that replaced TeamCity entirely, cutting pipeline runtime in half and scaling
+        deployment frequency from weekly to 5+ times daily.
+      </p>
+      <p style="color:var(--text-dim);">
+        Security and cost are part of the job, not an afterthought: <strong style="color:var(--text)">zero outstanding
+        vulnerabilities</strong> across four production domains via AWS WAF, IRSA, and KMS CMKs, and
+        a <strong style="color:var(--text)">~40% reduction in annual cloud spend</strong> while growing a 3-person SRE team into a
+        fully autonomous operation.
+      </p>
+    </section>
+
+    <section id="experience">
+      <div class="section-tag">Experience</div>
+      <h2>8+ years across Web3, enterprise infrastructure, and telecom-scale operations</h2>
+
+      <div class="timeline">
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Senior Site Reliability Engineer / Lead</span>
+            <span class="job-dates">Jun 2025 — Present</span>
+          </div>
+          <div class="job-company"><strong>Token 13 Software L.L.C</strong> · Dubai, UAE</div>
           <ul>
             <li>Owned end-to-end cloud architecture for a live Web3 platform — non-custodial wallet, blockchain explorer, and crypto payment gateway — across multiple AWS regions, sustaining <strong>99.9%+ uptime</strong> with zero design-attributed outages.</li>
             <li>Executed a full <strong>EC2-to-EKS migration with zero downtime</strong>, rebuilding VPC, Aurora MySQL, RDS, ECR, and IAM/OIDC from scratch with verified rollback at every stage.</li>
@@ -692,16 +525,13 @@
             <li>Cut annual cloud spend by <strong>~40%</strong> while leading a 3-person SRE team to full autonomy within 6 months.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="job">
-        <div class="job-meta">
-          <div class="dates">Jun 2021 — Apr 2025</div>
-          Bangalore
-        </div>
-        <div>
-          <div class="job-title">Senior Infrastructure Engineer - DevOps</div>
-          <div class="job-company"><strong>Lowe's India Pvt Ltd</strong></div>
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Senior Infrastructure Engineer</span>
+            <span class="job-dates">Jun 2021 — Apr 2025</span>
+          </div>
+          <div class="job-company"><strong>Lowe's India Pvt Ltd</strong> · Bangalore</div>
           <ul>
             <li>Administered a <strong>7,000+ server fleet</strong> across US data centers on RHEL, CentOS, Ubuntu, and Rocky Linux — provisioning, patching, vulnerability remediation, and performance tuning.</li>
             <li>Engineered Jenkins + Ansible pipelines automating ownership updates, upgrades, and remediation across <strong>200+ servers</strong>, eliminating 70% of manual operations.</li>
@@ -711,16 +541,13 @@
             <li>Recognised with <strong>SPOT Award</strong>, <strong>Focus on Customers Award</strong>, and <strong>Deliver Results Award</strong>.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="job">
-        <div class="job-meta">
-          <div class="dates">Apr 2019 — Mar 2021</div>
-          Bangalore · Huawei
-        </div>
-        <div>
-          <div class="job-title">System Engineer - SRE</div>
-          <div class="job-company"><strong>L&amp;T Technology Services</strong></div>
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">System Engineer - SRE</span>
+            <span class="job-dates">Apr 2019 — Mar 2021</span>
+          </div>
+          <div class="job-company"><strong>L&amp;T Technology Services</strong> · Bangalore · Client: Huawei</div>
           <ul>
             <li>Accelerated deployments by <strong>83%</strong> via Terraform IaC for AppGallery rollouts — 180 to 30 minutes.</li>
             <li>Improved platform reliability from <strong>87.5% to 98%+</strong> across AAL and RU regions through service optimisation and proactive fault management.</li>
@@ -728,83 +555,110 @@
             <li>Awarded <strong>Shining Star</strong> for eliminating underutilised cloud resources and delivering measurable cost savings.</li>
           </ul>
         </div>
-      </div>
 
-      <div class="job">
-        <div class="job-meta">
-          <div class="dates">May 2017 — Mar 2019</div>
-          Bangalore · Cisco
-        </div>
-        <div>
-          <div class="job-title">Senior Analyst</div>
-          <div class="job-company"><strong>Capgemini India Pvt Ltd</strong></div>
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Senior Analyst</span>
+            <span class="job-dates">May 2017 — Mar 2019</span>
+          </div>
+          <div class="job-company"><strong>Capgemini India Pvt Ltd</strong> · Bangalore · Client: Cisco</div>
           <ul>
             <li>Administered 24/7 L2/L3 Linux support for Cisco's physical and virtual servers across 3 US data centers (ALLEN, RCDN, RTP) — LVM provisioning, access controls, YUM/RPM operations.</li>
-            <li>Resolved critical Linux issues — account lockouts, file system access, patching, swap space — while enforcing ITIL Change & Release Management.</li>
+            <li>Resolved critical Linux issues — account lockouts, file system access, patching, swap space — while enforcing ITIL Change &amp; Release Management.</li>
             <li>Received the <strong>Service Delivery Award</strong> for operational excellence.</li>
           </ul>
         </div>
-      </div>
 
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-<section id="certifications">
-  <div class="container">
-    <div class="section-tag">Certifications &amp; Education</div>
-    <h2>Validated expertise across cloud and container platforms.</h2>
-    <div class="cred-grid">
-      <div class="cred-card">
-        <div class="cred-type">Certification</div>
-        <h4>AWS Solutions Architect Associate</h4>
-        <p>Certificate ID: 31679-91118-142989</p>
-      </div>
-      <div class="cred-card">
-        <div class="cred-type">Certification</div>
-        <h4>Certified Kubernetes Administrator (CKA)</h4>
-        <p>Udemy</p>
-      </div>
-      <div class="cred-card">
-        <div class="cred-type">Certification</div>
-        <h4>Cloud Computing &amp; DevOps</h4>
-        <p>Certificate ID: 31679-1523804-142989</p>
-      </div>
-      <div class="cred-card">
-        <div class="cred-type">Education</div>
-        <h4>B.Tech, Information Technology</h4>
-        <p>Anna University, India — May 2017</p>
-      </div>
-      <div class="cred-card">
-        <div class="cred-type">Languages</div>
-        <h4>English (Professional)</h4>
-        <p>Tamil (Native)</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="skills">
+      <div class="section-tag">Skills</div>
+      <h2>Core technical expertise</h2>
+      <div class="skills-table">
 
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrap">
-      <div class="section-tag" style="justify-content:center; display:flex;">Get in touch</div>
-      <h2 style="margin:0 auto 14px;">Open to senior SRE, DevOps, and platform engineering roles.</h2>
-      <p>Available for opportunities in Dubai and remote — infrastructure design, EKS/Kubernetes operations, CI/CD automation, and disaster recovery architecture.</p>
-      <div class="contact-links">
-        <a href="mailto:surekramsy@gmail.com">Email — surekramsy@gmail.com</a>
-        <a href="tel:+971509028488">+971 509028488</a>
-        <a href="https://www.linkedin.com/in/sureka-ramasamy" target="_blank">LinkedIn ↗</a>
-        <a href="resume.pdf">Resume ↓</a>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="skills-row">
+          <div class="skills-cat">Cloud / AWS</div>
+          <div class="skills-items">EC2 · EKS · RDS / Aurora · ALB · CloudFront · WAF · Route53 · IAM · SSM · KMS · CloudWatch · DLM · S3 · SNS · VPC</div>
+        </div>
 
-<footer>
-  <div class="container">
-    © 2026 Sureka Ramasamy · Dubai, UAE
-  </div>
-</footer>
+        <div class="skills-row">
+          <div class="skills-cat">Kubernetes</div>
+          <div class="skills-items">EKS (private clusters) · HPA · Cluster Autoscaler · StatefulSets · PVC/PV · Helm · RBAC · ALB Ingress Controller · Auto Scaling · Microservices</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">IaC &amp; Automation</div>
+          <div class="skills-items">Terraform · Ansible · Shell Scripting · Python · Cost Optimization</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">CI/CD</div>
+          <div class="skills-items">GitHub Actions · Jenkins · TeamCity · Docker · ECR · Argo CD · Dependabot</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">OS / Linux</div>
+          <div class="skills-items">RHEL 7/8/9 · CentOS · Ubuntu · Debian · Rocky Linux</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">Databases</div>
+          <div class="skills-items">Aurora MySQL · RDS MySQL · PostgreSQL · Redis (RDB+AOF) · MySQL binlog replication</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">Security</div>
+          <div class="skills-items">WAF (managed rules) · Rate limiting · IP blocking · VAPT · KMS CMK · IRSA · CSP / security headers · IAM least-privilege</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">Monitoring &amp; Observability</div>
+          <div class="skills-items">Datadog · Prometheus · Grafana · CloudWatch · ELK Stack (Kibana) · Splunk · Dozzle · AIOps</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">Backup &amp; DR</div>
+          <div class="skills-items">Veeam · Cohesity · AWS DLM · AMI/EBS Snapshots · PVC Recovery · DR Runbooks</div>
+        </div>
+
+        <div class="skills-row">
+          <div class="skills-cat">ITSM / Incident Mgmt</div>
+          <div class="skills-items">Jira · Confluence · ServiceNow · Remedy · RCA · On-Call · SLO/SLI</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="section-tag">Languages</div>
+      <h2>English (Professional) · Tamil (Native)</h2>
+      <div class="cred-grid">
+        <div class="cred-card">
+          <div class="cred-type">Contact</div>
+          <h4>Email</h4>
+          <p><a href="mailto:surekramsy@gmail.com" style="color:var(--accent)">surekramsy@gmail.com</a></p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-type">Contact</div>
+          <h4>Phone</h4>
+          <p>+971 509028488</p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-type">Contact</div>
+          <h4>LinkedIn</h4>
+          <p><a href="https://www.linkedin.com/in/sureka-ramasamy-496199179/" target="_blank" style="color:var(--accent)">https://www.linkedin.com/in/sureka-ramasamy-496199179/</a></p>
+        </div>
+        <div class="cred-card">
+          <div class="cred-type">Contact</div>
+          <h4>Location</h4>
+          <p>Dubai, UAE</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
 
 </body>
 </html>
